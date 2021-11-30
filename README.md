@@ -7,7 +7,7 @@
 This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. 
 
 1. `PREEMPT_RT` - Ubuntu 16.04 / 18.04 / 20.04 LTS
-2. `Xenomai` - Ubuntu 16.04 / 18.04 LTS.
+2. `Xenomai 3.1` - Ubuntu 16.04 / 18.04 LTS.
 
 If you are new to real-time Linux, please read this [article](https://www.cnblogs.com/wsg1100/p/12822346.html) first.
 
@@ -37,7 +37,7 @@ sudo dpkg -i linux-headers-5.11.0-jiaxy-2021128-rt7_2021_amd64.deb
 ## 2. Installing Xenomai 3.1
 You can refer to these tutorials to configure and compile a Xenoami kernel ([link_1](https://xenomai.org/documentation/xenomai-3/pdf/README.INSTALL.pdf) / [link_2](https://blog.csdn.net/Alanber14919/article/details/60327162) / [link_3](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Or you can directly install the kernel below if your controller is **PC104/PCM3365**.
 
-**1)** Installing *Cobalt* kernel
+**Step 1)** Installing *Cobalt* kernel
 
 Copy *Cobalt* kernel that has been configured and compiled:
 ```
@@ -58,9 +58,9 @@ cd /linux-sources
 sudo make install -j3
 ```
 
-**2)** Installing Xenomai libraries
+**Step 2)** Installing Xenomai libraries
 
-Make sure the library's version is 3.1 and install:
+Make sure the library's version is **3.1**:
 ```
 unzip xenomai.zip && cd xenomai
 sudo ./scripts/bootstrap
@@ -69,7 +69,7 @@ sudo ../configure --with-core=cobalt --enable-smp --enable-pshared
 sudo make install -j3
 ```
 
-**3)** Configuring
+**Step 3)** Configuring
 
 Create a configuration file:
 ```
@@ -91,32 +91,38 @@ exit
 Create Xenomai groups:
 ```
 sudo addgroup xenomai
-$sudo addgroup root xenomai
+sudo addgroup root xenomai
 sudo usermod -a -G xenomai `whoami`
 
 XenoGID=`cat /etc/group | sed -nr "s/xenomai:.:([0-9]+):.*/\1/p"`
 sudo sh -c "echo $XenoGID > /sys/module/xeno_nucleus/parameters/xenomai_gid"
 ```
 
-## 3. Startup Menus Configuration
-Edit grub file. Read this [link](https://blog.csdn.net/xin_yu_xin/article/details/19546613) if you are interested in grub parameters.
+## 3. Startup Menu Configuration
+Edit `grub` file. Click this [link](https://blog.csdn.net/xin_yu_xin/article/details/19546613) if you are interested in grub parameters.
 ```
 sudo gedit /etc/default/grub
 ```
-Set the real-time kernel as default kernel and display the startup menu. `1` denotes the second item *Advanced options for Ubuntu*; `0` denotes the first item at next page which is usually your real-time kernel. Adjust these numbers according to what displays at your startup pages.
-```
-#For PREEMPT RT
-GRUB_DEFAULT="1> 0"
-#For Xenomai
-GRUB_DEFAULT="1>Ubuntu, with Linux 4.19.89-sumantra-xenomai3-qdped-25th-march"
 
+Set the real-time kernel as a default kernel to boot. `1` denotes the second item *Advanced options for Ubuntu*; `0` denotes the first item at submenu which is usually your real-time kernel. Adjust these numbers according to what displays at your startup pages.
+```
+##### For PREEMPT_RT
+GRUB_DEFAULT="1>0"
+
+##### For Xenomai
+GRUB_DEFAULT="1>Ubuntu, with Linux 4.19.89-sumantra-xenomai3-qdped-25th-march"
+```
+Set the startup page to disappear after 10 seconds: 
+```
 GRUB_TIMEOUT_STYLE=menu（default=hidden)
 GRUB_TIMEOUT=10（default=0）
 ```
+
 Update grub file
 ```
 sudo update-grub
 ```
+
 Reboot and check if the real-time kernel is loaded
 ```
 reboot
@@ -124,17 +130,35 @@ uname -r
 ```
 
 ## 4. Latency Test
-* For RT patch install test tools first and then run (5 threads, 80 priority, infinite loop):
+* For PREEMPT_RT install test tools first and then run (5 threads, 80 priority, infinite loop):
 ```
 sudo apt-get install rt-tests
 sudo cyclictest -t 5 -p 80 -n
 ```
-
-
-* For Xenomai run (unit: us):
+* For Xenomai run:
 ```
 sudo /usr/xenomai/bin/latency
 ```
 
-## 5. Others
+## 5. Tips
+* Error `BUG in low_init(): [main] ABI mismatch: required r18, provided r17` in Xenomai latency test.
 
+This is due to different versions of Xenomai's kernel and library ([lnik](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Check and install consistent versions:
+```
+cat /proc/xenomai/version
+sudo /usr/xenomai/sbin/version
+```
+
+* Clean up old kernels
+
+Check your current kernel and display all kernels you have:
+```
+uname -r
+sudo dpkg --get-selections |grep linux
+```
+
+Delete old kernels, such as `3.0.0-12`:
+```
+sudo apt-get purge linux-headers-3.0.0-12 linux-image-3.0.0-12-generic
+sudo update-grub
+```
