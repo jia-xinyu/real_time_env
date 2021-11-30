@@ -103,12 +103,12 @@ sudo sh -c "echo $XenoGID > /sys/module/xeno_nucleus/parameters/xenomai_gid"
 
 **Step 4)** (Optional) Install **[PCAN Driver](https://www.peak-system.com/fileadmin/media/linux/files/PCAN-Driver-Linux_UserMan_eng.pdf)**
 
-Unzip and open the folder
+Unzip and open the folder:
 ```
 unzip peak-linux-driver-8.11.0.zip && cd peak-linux-driver-8.11.0
 ```
 
-Build and install
+Build and install:
 ```
 make xeno
 sudo make install
@@ -127,7 +127,7 @@ Check if PCAN driver is successfully loaded:
 cat /proc/pcan
 ```
 
-Sometimes chardev (PCAN) is effected by netdev (SocketCAN). You can remove netdev module `peak_pci` when using `pcan`.
+Sometimes chardev (PCAN) is effected by netdev (SocketCAN). You can remove netdev module `peak_pci` when using `pcan`:
 ```
 sudo modprobe -r peak_pci
 sudo modprobe pcan
@@ -153,12 +153,12 @@ GRUB_TIMEOUT_STYLE=menu（default=hidden)
 GRUB_TIMEOUT=10（default=0）
 ```
 
-Update grub file
+Update grub file:
 ```
 sudo update-grub
 ```
 
-Reboot and check if the real-time kernel is loaded
+Reboot and check if the real-time kernel is loaded:
 ```
 reboot
 uname -r
