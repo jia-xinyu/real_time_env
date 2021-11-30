@@ -2,10 +2,10 @@
 
 #  Installation Guide to Real-Time Linux
 <img width="400" src="/folder.png">
-<img width="400" src="/RT.png">
+<img width="300" src="/RT.png">
 </div>
 
-This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. 
+This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered here since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. Aso the installation of PCAN Driver in a Xenomai kernel is introduced below.
 
 1. `PREEMPT_RT` - Ubuntu 16.04 / 18.04 / 20.04 LTS
 2. `Xenomai 3.1` - Ubuntu 16.04 / 18.04 LTS
@@ -13,9 +13,13 @@ This repository introduces 2 methods to build a real-time environment on your Li
 If you are new to real-time Linux, please read this [article](https://www.cnblogs.com/wsg1100/p/12822346.html) first. 
 
 ## 1. Installing PREEMPT RT patch
-You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel / AMD** processors, e.g. PC104/PCM3365 or Intel NUC. These real-time kernels have only 2 differences with the normal kernel:
+You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel** or **AMD** processors, e.g. PC104/PCM-3365 or Intel NUC. These real-time kernels have only 2 differences with the normal kernel:
+
+```
 **Preemption Model**: Preemptible Kernel (Low-Latency Desktop) -> **Fully Preemptible Kernel (RT)**
+
 **Timer Frequency**: 250 Hz -> **1000 Hz** 
+```
 
 * For Ubuntu 16.04 run:
 ```
