@@ -13,7 +13,7 @@ This repository introduces 2 methods to build a real-time environment on your Li
 If you are new to real-time Linux, please read this [article](https://www.cnblogs.com/wsg1100/p/12822346.html) first. 
 
 ## 1. Installing PREEMPT RT patch
-You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel** or **AMD** processors, e.g. PC104/PCM-3365 or Intel NUC. These real-time kernels have only 2 differences with the normal kernel:
+You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel** or **AMD** processors, e.g. PC104/PCM-3365 or Intel NUC. These real-time kernels only have 2 differences with the normal kernel:
 
 ```
 **Preemption Model**: Preemptible Kernel (Low-Latency Desktop) -> **Fully Preemptible Kernel (RT)**
@@ -40,7 +40,7 @@ sudo dpkg -i linux-headers-5.11.0-jiaxy-2021128-rt7_2021_amd64.deb
 **OTHERS**: If your controller uses **ARM** processors, e.g. NVIDIA Jeston Nano / TX / Xavier which requires to install real-time kernels via NVIDIA SDK Manager, please refer to these links ([link_1](https://zhuanlan.zhihu.com/p/158825325) / [link_2](https://forums.developer.nvidia.com/t/preempt-rt-patches-for-jetson-nano/72941/15) / [link_3](https://orenbell.com/?p=436)).
 
 ## 2. Installing Xenomai 3.1
-You can refer to these tutorials to configure and compile a Xenoami kernel ([link_1](https://xenomai.org/documentation/xenomai-3/pdf/README.INSTALL.pdf) / [link_2](https://blog.csdn.net/Alanber14919/article/details/60327162) / [link_3](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Or you can directly install the kernel below if your controller is **PC104/PCM3365**.
+You can refer to these tutorials to configure and compile a Xenoami kernel ([link_1](https://xenomai.org/documentation/xenomai-3/pdf/README.INSTALL.pdf) / [link_2](https://blog.csdn.net/Alanber14919/article/details/60327162) / [link_3](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Or you can directly install the kernel below if your controller is **PC104/PCM-3365**.
 
 **Step 1)** Installing *Cobalt* kernel
 
