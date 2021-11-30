@@ -59,7 +59,7 @@ ln -s ~/Downloads/linux-4.19.89 build
 ```
 Install *Cobalt* kernel:
 ```
-cd /linux-sources
+cd ~/Downloads/linux-4.19.89
 sudo make install -j3
 ```
 
