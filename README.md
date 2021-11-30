@@ -2,7 +2,7 @@
 
 #  Installation Guide to Real-Time Linux
 <img width="400" src="/folder.png">
-<img width="300" src="/RT.png">
+<img width="350" src="/RT.png">
 </div>
 
 This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered here since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. Aso the installation of PCAN Driver in a Xenomai kernel is introduced below.
