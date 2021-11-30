@@ -5,7 +5,7 @@
 <img width="350" src="/RT.png">
 </div>
 
-This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered here since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. Aso the installation of PCAN Driver in a Xenomai kernel is introduced below.
+This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered here since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. Aso, the installation of PCAN Driver in a Xenomai kernel is introduced below.
 
 1. `PREEMPT_RT` - Ubuntu 16.04 / 18.04 / 20.04 LTS
 2. `Xenomai 3.1` - Ubuntu 16.04 / 18.04 LTS
