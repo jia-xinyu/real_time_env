@@ -4,7 +4,7 @@
 <img width="400" src="/folder.png">
 </div>
 
-This repository presents 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. 
+This repository introduces 2 methods to build a real-time environment on your Linux OS. The kernel files in the figure above are not offered since they are too large to upload in GitHub. You can contact Jia Xinyu (xinyu.jia@u.nus.edu) to obtain them. 
 
 1. `PREEMPT_RT` - Ubuntu 16.04 / 18.04 / 20.04 LTS
 2. `Xenomai` - Ubuntu 16.04 / 18.04 LTS.
@@ -12,7 +12,7 @@ This repository presents 2 methods to build a real-time environment on your Linu
 If you are new to real-time Linux, please read this [article](https://www.cnblogs.com/wsg1100/p/12822346.html) first.
 
 ## 1. Installing PREEMPT RT patch
-You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install patched kernels below if your controllers use **Intel / AMD** processors e.g. PC104/PCM3365 or Intel NUC. These real-time kernels have only 2 differences with normal ones:
+You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel / AMD** processors, e.g. PC104/PCM3365 or Intel NUC. These real-time kernels have only 2 differences with the normal kernel:
 * **Preemption Model**: Preemptible Kernel (Low-Latency Desktop) -> **Fully Preemptible Kernel (RT)**
 * **Timer Frequency**: 250 Hz -> **1000 Hz** 
 
@@ -32,11 +32,13 @@ sudo dpkg -i linux-image-5.11.0-jiaxy-2021128-rt7_2021_amd64.deb
 sudo dpkg -i linux-headers-5.11.0-jiaxy-2021128-rt7_2021_amd64.deb
 ```
 
-**OTHERS**: If your controllers use **ARM** processors, e.g. NVIDIA Jeston Nano / TX / Xavier which requires to install real-time kernels via NVIDIA SDK Manager, please refer to these links ([link_1](https://zhuanlan.zhihu.com/p/158825325) / [link_2](https://forums.developer.nvidia.com/t/preempt-rt-patches-for-jetson-nano/72941/15) / [link_3](https://orenbell.com/?p=436)).
+**OTHERS**: If your controller uses **ARM** processors, e.g. NVIDIA Jeston Nano / TX / Xavier which requires to install real-time kernels via NVIDIA SDK Manager, please refer to these links ([link_1](https://zhuanlan.zhihu.com/p/158825325) / [link_2](https://forums.developer.nvidia.com/t/preempt-rt-patches-for-jetson-nano/72941/15) / [link_3](https://orenbell.com/?p=436)).
 
 ## 2. Installing Xenomai 3.1
 You can refer to these tutorials to configure and compile a Xenoami kernel ([link_1](https://xenomai.org/documentation/xenomai-3/pdf/README.INSTALL.pdf) / [link_2](https://blog.csdn.net/Alanber14919/article/details/60327162) / [link_3](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Or you can directly install the kernel below if your controller is **PC104/PCM3365**.
+
 **1)** Installing *Cobalt* kernel
+
 Copy *Cobalt* kernel that has been configured and compiled:
 ```
 tar -xvf modules.tar
@@ -57,6 +59,7 @@ sudo make install -j3
 ```
 
 **2)** Installing Xenomai libraries
+
 Make sure the library's version is 3.1 and install:
 ```
 unzip xenomai.zip && cd xenomai
@@ -67,13 +70,15 @@ sudo make install -j3
 ```
 
 **3)** Configuring
+
 Create a configuration file:
 ```
 cd /etc/ld.so.conf.d/
 sudo touch xenomai.conf 
 sudo sh -c "echo '/usr/xenomai/lib' >> xenomai.conf"
 sudo ldconfig
-``
+```
+
 Update `.bashrc` in normal and root mode to specify the compile path:
 ```
 echo "export PATH=$PATH:/usr/xenomai/bin:/usr/xenomai/lib:/usr/xenomai/include" >> ~/.bashrc
@@ -82,6 +87,7 @@ sudo su
 echo "export PATH=$PATH:/usr/xenomai/bin:/usr/xenomai/lib:/usr/xenomai/include" >> ~/.bashrc
 exit
 ```
+
 Create Xenomai groups:
 ```
 sudo addgroup xenomai
