@@ -114,7 +114,7 @@ make xeno
 sudo make install
 ```
 
-Configure Tx/Rx size and speed (1Mb/s). Note to uncomment the line "options ..."
+Configure Tx/Rx size and speed (1Mbps). Note to uncomment the line "options ..."
 ```
 gedit /etc/modprobe.d/pcan.conf 
 ```
