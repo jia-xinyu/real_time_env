@@ -16,9 +16,9 @@ If you are new to real-time Linux, please read this [article](https://www.cnblog
 You can refer to these tutorials to configure and compile a kernel ([link_1](https://www.jianshu.com/p/b74b05d26cf9) / [link_2](https://blog.csdn.net/shenyage/article/details/102099198) / [link_3](https://blog.csdn.net/weixin_43455581/article/details/103899362)). Or you can directly install kernels below if your controller uses **Intel** or **AMD** processors, e.g. PC104/PCM-3365 or Intel NUC. These real-time kernels only have 2 differences with the normal kernel:
 
 ```
-**Preemption Model**: Preemptible Kernel (Low-Latency Desktop) -> **Fully Preemptible Kernel (RT)**
+Preemption Model: Preemptible Kernel (Low-Latency Desktop) -> Fully Preemptible Kernel (RT)
 
-**Timer Frequency**: 250 Hz -> **1000 Hz** 
+Timer Frequency: 250 Hz -> 1000 Hz
 ```
 
 * For Ubuntu 16.04 run:
