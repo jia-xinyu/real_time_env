@@ -63,9 +63,7 @@ cd ~/Downloads/linux-4.19.89
 sudo make install -j3
 ```
 
-**Step 2)** Installing Xenomai libraries
-
-Make sure the library's version is **3.1**:
+**Step 2)** Make sure the Xenomai library's version is **3.1** and install:
 ```
 unzip xenomai.zip && cd xenomai
 sudo ./scripts/bootstrap
