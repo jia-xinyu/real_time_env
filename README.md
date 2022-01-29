@@ -139,7 +139,7 @@ Edit `grub` file. Click this [link](https://blog.csdn.net/xin_yu_xin/article/det
 sudo gedit /etc/default/grub
 ```
 
-Set the real-time kernel as a default kernel to boot. `1` denotes the second item *Advanced options for Ubuntu*; `0` denotes the first item at submenu which is usually your real-time kernel. Adjust these numbers according to what displays at your startup pages.
+Set the real-time kernel as a default kernel to boot. `1` denotes the second item *Advanced options for Ubuntu*; `0` denotes the first item at submenu which is usually your real-time kernel. Adjust these numbers according to what displays at your startup page.
 ```
 ##### For PREEMPT_RT
 GRUB_DEFAULT="1>0"
@@ -178,7 +178,7 @@ sudo /usr/xenomai/bin/latency
 ## 5. Tips
 **A)** Error `BUG in low_init(): [main] ABI mismatch: required r18, provided r17` in Xenomai latency test.
 
-This is due to different versions of Xenomai's kernel and library ([lnik](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Check and install consistent versions:
+This is due to different versions of Xenomai's kernel and library ([link](https://blog.csdn.net/pupil_wjj/article/details/105856926)). Check and install consistent versions:
 ```
 cat /proc/xenomai/version
 sudo /usr/xenomai/sbin/version
