@@ -1,6 +1,6 @@
 <div align="center">
 
-#  Installation Guide to Real-Time Linux
+#  Real-Time Linux Installation Guide
 <img width="400" src="/folder.png">
 <img width="350" src="/RT.png">
 </div>
